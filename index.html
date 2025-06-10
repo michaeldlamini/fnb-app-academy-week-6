@@ -23,6 +23,17 @@
                 console.log(data);
             })
         }
+
+         function displayOutput(data){
+              output = "<table>";
+
+                for(a in data){
+                  output +=
+                  <tr>
+                    <td><img src="${rootPath}controller/uploads/${data[a].avatar}"/></td>
+                  </tr>
+                 }
+                  }
     </script>
     
 </body>
