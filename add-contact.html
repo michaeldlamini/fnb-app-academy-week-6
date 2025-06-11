@@ -28,11 +28,14 @@
 
     <script src="config.js"></script>
     <script>
+        document.getElementById("submitForm").addEventListener('click', submitForm);
+        document.getElementById("homeLink").addEventListener('click',homeLink);
+        
         function submitForm(e){
             e.preventDefault();
 
             const form = new FormData(document.querySelector('#editForm'));
-            form.append('apiKey');
+            form.append('apiKey', apiKey);
 
             fetch(rootPath + 'controller/insert-contact', {
                 method: 'POST',
@@ -45,12 +48,16 @@
             .then(function(data){
                 if(data == "1"){
                     arlet("Contact added.");
-                    //link to home page
+                    homeLink();
                 }else{
                     arlet(data);
-                    //link to home page
+                   homeLink();
                 }
             })
+        }
+
+        function homeLink(){
+            window.open("index.html", "_self");
         }
     </script>
     
