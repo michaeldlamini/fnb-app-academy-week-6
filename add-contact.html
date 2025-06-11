@@ -42,7 +42,7 @@
                 headers: {'Accept': 'application/json, *.*'},
                 body: form
             })
-            the(function(response){
+            .then(function(response){
                 return response.text();
             })
             .then(function(data){
