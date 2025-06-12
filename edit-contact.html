@@ -6,6 +6,7 @@
 
 <body onload="getContact()">
 
+
     <div id="avatarImage"></div>
     <form id="editForm">
     <label for="firstname">First name</label>
@@ -44,6 +45,11 @@
         var id = url.slice(pos + 1);
         return id;
     }
+
+    function getContact() {
+    console.log("Fetching contact details...");
+}
+
 
     function getContact(){
         fetch(rootPath + 'controller/get-contact/id=' + id)
