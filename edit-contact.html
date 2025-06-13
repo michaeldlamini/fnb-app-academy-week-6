@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>edit-contact</title>
 </head>
 
 <body onload="getContact()">
@@ -10,16 +12,16 @@
     <div id="avatarImage"></div>
     <form id="editForm">
     <label for="firstname">First name</label>
-    <input type="text" name="firstname" id="firstname" readonly><br>
+    <input type="text" name="firstname" id="firstname" autocomplete="given-name" readonly><br>
 
     <label for="lastname">Last name</label>
-    <input type="text" name="lastname" id="lastname" readonly><br>
+    <input type="text" name="lastname" id="lastname" autocomplete="family-name" readonly><br>
 
     <label for="mobile">Mobile</label>
-    <input type="text" name="mobile" id="mobile" readonly><br>
+    <input type="text" name="mobile" id="mobile" autocomplete="off" readonly><br>
 
     <label for="email">Email</label>
-    <input type="text" name="email" id="email" readonly><br>
+    <input type="text" name="email" id="email" autocomplete="off" readonly><br>
 
     <label for="avatar" id="avatarLabel" hidden>Change profile image</label><br>
     <input type="file" name="avatar" id="avatar" hidden><br>
@@ -35,6 +37,7 @@
 
 <script src="config.js"></script>
 <script>
+    
     var id = getId();
     document.getElementById("homeLink").addEventListener('click', homeLink);
     console.log("The id :" + id);
@@ -47,6 +50,7 @@
     }
 
     function getContact() {
+        //Function logic here
     console.log("Fetching contact details...");
 }
 
@@ -57,13 +61,23 @@
             return response.json();
         })
         .then(function(data){
-            //display contact info
+            displayOutput(data);
             console.log(data);
         })
     }
 
     function homeLink(){
         window.open("index.html", "_self");
+    }
+
+    function displayOutput(data){
+        console.log("Image Path: ", rootPath + "/controller/uploads/" + data[0].avatar);
+       var avatarImg = `<img src="${rootPath}/controller/uploads/${data[0].avatar}" width="200"/>`;
+        document.getElementById("avatarImage").innerHTML = avatarImg;
+        document.getElementById("firstname").value = data[0].firstname;
+        document.getElementById("lastname").value = data[0].lastname;
+        document.getElementById("mobile").value = data[0].mobile;
+        document.getElementById("email").value = data[0].email;
     }
 </script>
 </body>
