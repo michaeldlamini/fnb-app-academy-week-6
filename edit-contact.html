@@ -52,13 +52,7 @@
         return id;
     }
 
-    function getContact() {
-        //Function logic here
-    
-}
-
-
-    function getContact(){
+     function getContact(){
         fetch(rootPath + 'controller/get-contact/id=' + id)
         .then(function(response){
             return response.json();
